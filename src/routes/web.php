@@ -34,3 +34,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
 });
+
+Route::prefix('admin')->name('admin.')->middleware('auth', 'is_admin')->group(function () {
+    Route::get('/questions', [AdminQuestionController::class, 'index'])->name('questions.index');
+    Route::get('/questions/{question}', [AdminQuestionController::class, 'show'])->name('questions.show');
+    Route::delete('/questions/{question}', [AdminQuestionController::class, 'destroy'])->name('questions.destroy');
+});
+
