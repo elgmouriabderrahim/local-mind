@@ -3,50 +3,62 @@
 @section('title', 'Home')
 
 @section('content')
-<div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto py-10 px-6 lg:px-8">
 
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-        <h1 class="text-3xl font-bold text-gray-900">All Questions</h1>
+    <div class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Discussions</h1>
+            <p class="text-sm text-gray-500 mt-1">Browse and contribute to the community feed.</p>
+        </div>
+        
         <a href="{{ route('questions.create') }}"
-           class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition-all duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-            </svg>
+           class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-md shadow-sm transition-all">
             Ask Question
         </a>
     </div>
 
     @if($questions->isEmpty())
-        <p class="text-gray-500 text-center text-lg mt-12">No questions yet. Be the first to ask!</p>
+        <div class="text-center py-12 border border-dashed border-gray-300 rounded-lg bg-gray-50">
+            <p class="text-gray-500 font-medium">No questions found.</p>
+        </div>
     @else
-        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="space-y-4">
             @foreach($questions as $question)
-                <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100 flex flex-col justify-between">
-                    <div class="p-6 flex flex-col gap-3">
-                        <h2 class="text-lg font-semibold text-gray-900 line-clamp-2">{{ $question->title }}</h2>
-                        <p class="text-gray-600 text-sm line-clamp-3">{{ $question->content }}</p>
-                    </div>
-
-                    <div class="flex items-center justify-between p-4 border-t border-gray-100">
-                        <div class="flex flex-col text-xs text-gray-500">
-                            <span>By <span class="font-medium text-gray-800">{{ $question->user->name }}</span></span>
-                            <span>{{ $question->created_at->diffForHumans() }}</span>
+                <div class="bg-white border border-gray-200 hover:border-indigo-400 hover:shadow-md transition-all rounded-lg overflow-hidden flex flex-col md:flex-row">
+                    
+                    <div class="flex-grow p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded uppercase tracking-wider">Public</span>
+                            <span class="text-xs text-gray-400">{{ $question->created_at->diffForHumans() }}</span>
                         </div>
 
-                        <a href="{{ route('questions.show', $question->id) }}"
-                           class="inline-flex items-center gap-1 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                            </svg>
-                            Show
+                        <a href="{{ route('questions.show', $question->id) }}" class="group">
+                            <h2 class="text-lg font-bold text-gray-900 group-hover:underline decoration-indigo-500 underline-offset-4 decoration-2 transition-all mb-2">
+                                {{ $question->title }}
+                            </h2>
+                            <p class="text-gray-600 text-sm line-clamp-2 leading-relaxed max-w-4xl">
+                                {{ strip_tags($question->content) }}
+                            </p>
                         </a>
+                    </div>
+
+                    <div class="md:w-64 bg-gray-50/50 p-6 border-t md:border-t-0 md:border-l border-gray-100 flex flex-col justify-center">
+                        <div class="flex items-center gap-3">
+                            <div class="h-8 w-8 rounded bg-gray-800 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                                {{ strtoupper(substr($question->user->name, 0, 1)) }}
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-bold text-gray-900 truncate">{{ $question->user->name }}</p>
+                                <a href="{{ route('questions.show', $question->id) }}" class="text-[11px] font-semibold text-indigo-600 hover:text-indigo-800 uppercase tracking-tighter">View Discussion &rarr;</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             @endforeach
         </div>
 
-        <div class="mt-10 flex justify-center">
+        <div class="mt-10 flex items-center justify-between border-t border-gray-200 pt-6">
+            <p class="text-sm text-gray-500 italic">Showing latest contributions</p>
             {{ $questions->links() }}
         </div>
     @endif
