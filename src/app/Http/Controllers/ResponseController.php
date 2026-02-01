@@ -19,4 +19,10 @@ class ResponseController extends Controller
 
         return redirect()->route('questions.show', $question->id);
     }
+
+    public function index()
+    {
+        $responses = Response::with('user', 'question')->latest()->paginate(20);
+        return view('admin.responses.index', compact('responses'));
+    }
 }
