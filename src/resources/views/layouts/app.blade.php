@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'LocalMind')</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
 
@@ -19,8 +20,8 @@
             <span class="text-gray-700 mr-4">Hello, {{ auth()->user()->name }}</span>
             <a href="{{ route('logout') }}"
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-               class="text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded">
-                Logout
+               class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded">
+                <i class="fa-solid fa-person-hiking"></i> Logout
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                 @csrf
