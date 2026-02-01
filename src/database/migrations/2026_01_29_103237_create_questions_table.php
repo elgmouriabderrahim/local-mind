@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('title', 100);
             $table->text('content');
             $table->string('location_name', 255)->nullable();
-            $table->dicimal('latitude', 9,7)->nullable();
-            $table->decimal('longitude' 10,7)->nullable();
+            $table->decimal('latitude', 9, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
 
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });

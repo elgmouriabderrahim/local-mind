@@ -6,19 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Response extends Model
 {
-    protected $fillable = [
-        'user_id',
-        'question_id',
-        'content',
-    ];
+    protected $fillable = ['content', 'user_id', 'question_id'];
 
-    public function question()
-    {
+    public function question() {
         return $this->belongsTo(Question::class);
     }
 
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 }
