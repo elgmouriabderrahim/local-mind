@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'Login')
 
 @section('content')
 <body class="font-inter overflow-hidden">
-    <section class="flex justify-center relative">
+    <section class="flex justify-center relative mb-4">
         <img src="https://pagedone.io/asset/uploads/1702362010.png" alt="gradient background image" class="w-full h-full object-cover fixed">
 
         <div class="mx-auto max-w-lg  lg:px-8 absolute">
