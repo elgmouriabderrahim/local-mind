@@ -63,5 +63,22 @@
         </div>
     @endif
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        if (!urlParams.has('latitude') && navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                
+                window.location.href = `/?latitude=${lat}&longitude=${lng}`;
+            }, function(error) {
+                console.error("User denied geolocation or error occurred.");
+            });
+        }
+    });
+</script>
+
 </div>
 @endsection
