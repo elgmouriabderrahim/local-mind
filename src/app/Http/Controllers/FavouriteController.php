@@ -3,29 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Favorite;
+use App\Models\Favourite;
 use App\Models\Question;
 
-class FavoriteController extends Controller
+class FavouriteController extends Controller
 {
     public function index()
     {
-        $favorites = auth()->user()->favorites()->with('question')->get();
-        return view('user.favorites', compact('favorites'));
+        $favourites = auth()->user()->favourites()->with('question')->get();
+        return view('user.favourites', compact('favourites'));
     }
 
     public function toggle(Question $question)
     {
         $user = auth()->user();
 
-        $favorite = Favorite::where('user_id', $user->id)
+        $favourite = favourite::where('user_id', $user->id)
                             ->where('question_id', $question->id)
                             ->first();
 
-        if ($favorite) {
-            $favorite->delete();
+        if ($favourite) {
+            $favourite->delete();
         } else {
-            Favorite::create([
+            favourite::create([
                 'user_id' => $user->id,
                 'question_id' => $question->id
             ]);

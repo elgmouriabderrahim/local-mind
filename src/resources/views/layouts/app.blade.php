@@ -13,7 +13,7 @@
     <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed w-full top-0">
         <div class="flex space-x-4">
             <a href="{{ route('home') }}" class="text-gray-800 font-semibold hover:text-blue-600">Home</a>
-            <a href="{{ route('favorites.index') }}" class="text-gray-800 font-semibold hover:text-blue-600">Favorites</a>
+            <a href="{{ route('favourites.index') }}" class="text-gray-800 font-semibold hover:text-blue-600">favourites</a>
         </div>
 
         <div>

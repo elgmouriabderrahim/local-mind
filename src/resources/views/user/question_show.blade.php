@@ -33,14 +33,14 @@
                     </div>
                 </div>
 
-                <form action="{{ route('questions.favorite', $question->id) }}" method="POST" class="shrink-0">
+                <form action="{{ route('questions.favourite', $question->id) }}" method="POST" class="shrink-0">
                     @csrf
                     <button class="flex flex-col items-center justify-center p-3 rounded-lg border transition-all duration-200 group
-                        {{ auth()->user()->favorites->pluck('question_id')->contains($question->id) 
+                        {{ auth()->user()->favourites->pluck('question_id')->contains($question->id) 
                             ? 'bg-red-50 border-red-100 text-red-600' 
                             : 'bg-white border-gray-200 text-gray-400 hover:border-red-200 hover:text-red-500' }}">
                         
-                        @if(auth()->user()->favorites->pluck('question_id')->contains($question->id))
+                        @if(auth()->user()->favourites->pluck('question_id')->contains($question->id))
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 18l-6.828-6.828a4 4 0 010-5.656z"/>
                             </svg>

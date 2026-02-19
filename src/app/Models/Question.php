@@ -16,7 +16,7 @@ class Question extends Model
         return $this->hasMany(Response::class);
     }
 
-    public function favorites() {
-        return $this->hasMany(Favorite::class);
+    public function favourites() {
+        return $this->hasMany(Favourite::class);
     }
 }

@@ -48,8 +48,8 @@
                 <i data-feather="external-link" class="w-5 h-5"></i> Main Site
             </a>
             
-            <a href="{{ route('favorites.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition-all">
-                <i data-feather="heart" class="w-5 h-5"></i> Favorites
+            <a href="{{ route('favourites.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition-all">
+                <i data-feather="heart" class="w-5 h-5"></i> favourites
             </a>
         </nav>
 

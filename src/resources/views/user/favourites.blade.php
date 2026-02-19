@@ -1,33 +1,33 @@
 @extends(auth()->user()->role === 'admin' ? 'layouts.admin' : 'layouts.app')
 
-@section('title', 'My Favorites')
+@section('title', 'My favourites')
 
 @section('content')
 <div class="max-w-7xl mx-auto py-10 px-6 lg:px-8">
 
     <div class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Saved Favorites</h1>
+            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Saved favourites</h1>
             <p class="text-sm text-gray-500 mt-1">Questions you have bookmarked for quick access.</p>
         </div>
         <div class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">
-            {{ $favorites->count() }} Items
+            {{ $favourites->count() }} Items
         </div>
     </div>
 
-    @if($favorites->isEmpty())
+    @if($favourites->isEmpty())
         <div class="text-center py-12 border border-dashed border-gray-300 rounded-lg bg-gray-50">
-            <p class="text-gray-500 font-medium">You haven't saved any favorites yet.</p>
+            <p class="text-gray-500 font-medium">You haven't saved any favourites yet.</p>
         </div>
     @else
         <div class="space-y-4">
-            @foreach($favorites as $favorite)
-                @php $question = $favorite->question; @endphp
+            @foreach($favourites as $favourite)
+                @php $question = $favourite->question; @endphp
                 <div class="bg-white border border-gray-200 hover:border-indigo-400 hover:shadow-md transition-all rounded-lg overflow-hidden flex flex-col md:flex-row">
                     
                     <div class="flex-grow p-6">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="text-[10px] font-bold text-pink-600 bg-pink-50 px-2 py-0.5 rounded uppercase tracking-wider">Favorite</span>
+                            <span class="text-[10px] font-bold text-pink-600 bg-pink-50 px-2 py-0.5 rounded uppercase tracking-wider">favourite</span>
                             <span class="text-xs text-gray-400">{{ $question->created_at->diffForHumans() }}</span>
                         </div>
 
@@ -53,11 +53,11 @@
                                 </div>
                             </div>
 
-                            <form action="{{ route('questions.favorite', $question->id) }}" method="POST" class="shrink-0">
+                            <form action="{{ route('questions.favourite', $question->id) }}" method="POST" class="shrink-0">
                                 @csrf
                                 <button type="submit" 
                                         class="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-all"
-                                        title="Remove from favorites">
+                                        title="Remove from favourites">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                     </svg>
